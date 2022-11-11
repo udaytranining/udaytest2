@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const {request, response} = require("express");
 const app = express()
 const db = require('./postgres')
-const port =  process.env.port || 5000
+const port =  process.env.port
 
 app.use(bodyParser.json())
 app.use(
