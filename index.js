@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const {request, response} = require("express");
 const app = express();
 const db = require('./postgres');
-const port =  process.env.PORT || 3000;
+const port =  process.env.PORT || 3002;
 
 app.use(bodyParser.json())
 app.use(
@@ -22,5 +22,6 @@ app.post('/users', db.createUser)
 
 app.listen(port,() => {
     console.log(`App is running on port ${port}.`)
+    db.pool.query('CREATE TABLE IF NOT EXISTS users (first_name VARCHAR ( 50 ) NOT NULL,last_name VARCHAR ( 50 ) NOT NULL)');
 })
 

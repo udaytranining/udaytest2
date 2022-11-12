@@ -27,6 +27,7 @@ const createUser = (request, response) => {
 }
 
 module.exports = {
+    pool,
     getUsers,
     createUser
 }
