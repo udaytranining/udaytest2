@@ -1,11 +1,10 @@
+require('dotenv').config();
 const {request, response} = require("express");
 const Pool = require('pg').Pool
+const connectionString = process.env.DATABASE_URL
+
 const pool = new Pool({
-    'user': 'postgres',
-    'host': 'localhost',
-    'database': 'bala',
-    'password': 'Admin@13579',
-    'port':5432
+    connectionString
 })
 
 const getUsers = (request, response) => {
