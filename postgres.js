@@ -1,7 +1,7 @@
 require('dotenv').config();
 const {request, response} = require("express");
-const Pool = require('pg').Pool
-const connectionString = process.env.DATABASE_URL
+const Pool = require('pg').Pool;
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({
     connectionString
@@ -27,7 +27,6 @@ const createUser = (request, response) => {
 }
 
 module.exports = {
-    pool,
     getUsers,
     createUser
 }
