@@ -1,7 +1,8 @@
 require('dotenv').config();
 const {request, response} = require("express");
 const Pool = require('pg').Pool;
-const connectionString = process.env.DATABASE_URL;
+
+const connectionString = process.env.DATABASE_URL
 
 const pool = new Pool({
     connectionString
