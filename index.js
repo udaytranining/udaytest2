@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const {request, response} = require("express");
 const app = express();
 const db = require('./postgres');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3008;
 
 app.use(bodyParser.json())
 app.use(
@@ -19,6 +19,7 @@ app.get('/', (request, response) => {
 
 app.get('/users', db.getUsers)
 app.post('/users', db.createUser)
+app.put('/users/:id', db.updateUser)
 
 app.listen(port,() => {
     console.log(`App is running on port ${port}.`)

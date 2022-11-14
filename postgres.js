@@ -30,7 +30,24 @@ const createUser = (request, response) => {
     })
 }
 
+const updateUser = (request, response) => {
+    const id = parseInt(request.params.id)
+    const { first_name, last_name } = request.body
+
+    pool.query(
+        'UPDATE users SET first_name = $1, last_name = $2 WHERE id = $3',
+        [first_name, last_name, id],
+        (error, results) => {
+            if (error) {
+                throw error
+            }
+            response.status(200).send(`User modified with ID: ${id}`)
+        }
+    )
+}
+
 module.exports = {
     getUsers,
-    createUser
+    createUser,
+    updateUser
 }
