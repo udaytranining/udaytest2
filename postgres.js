@@ -61,9 +61,20 @@ const deleteUser = (request, response) => {
     )
 }
 
+const createUserSalesforce = (request, response) => {
+    const {name, first_name, last_name } = request.body
+    pool.query('INSERT INTO "salesforce.student___c" (name, first_name, last_name) VALUES ($1, $2, $3) RETURNING *',[name,first_name,last_name], (error, results) => {
+        if(error) {
+            throw error
+        }
+        response.status(201).send(`Added User: ${results.rows[0].name}`)
+    })
+}
+
 module.exports = {
     getUsers,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    createUserSalesforce
 }
