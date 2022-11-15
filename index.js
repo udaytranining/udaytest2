@@ -19,7 +19,6 @@ app.get('/', (request, response) => {
 
 app.get('/users', db.getUsers)
 app.post('/users', db.createUser)
-app.post('/users/sales', db.createUserSalesforce)
 app.put('/users/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 
