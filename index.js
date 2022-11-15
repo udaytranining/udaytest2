@@ -20,6 +20,7 @@ app.get('/', (request, response) => {
 app.get('/users', db.getUsers)
 app.post('/users', db.createUser)
 app.put('/users/:id', db.updateUser)
+app.delete('/users/:id', db.deleteUser)
 
 app.listen(port,() => {
     console.log(`App is running on port ${port}.`)
