@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const {request, response} = require("express");
 const app = express();
 const db = require('./postgres');
-const port = process.env.PORT || 5556;
+const port = process.env.PORT || 5557;
 
 app.use(bodyParser.json())
 app.use(
@@ -18,7 +18,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/users', db.getUsers)
+app.get('/users/sales', db.getUsersSale)
 app.post('/users', db.createUser)
+app.post('/users/sales', db.createUserSalesforce)
 app.put('/users/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 

@@ -20,6 +20,14 @@ const getUsers = (request, response) => {
     })
 }
 
+const getUsersSale = (request, response) => {
+    pool.query('SELECT * FROM "salesforce.demo__c"', (error, results) =>{
+        if(error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
 const createUser = (request, response) => {
     const {first_name, last_name } = request.body
     pool.query('INSERT INTO users (first_name, last_name) VALUES ($1,$2) RETURNING *',[first_name,last_name], (error, results) => {
@@ -27,6 +35,16 @@ const createUser = (request, response) => {
             throw error
         }
         response.status(201).send(`Added User: ${results.rows[0].id}`)
+    })
+}
+
+const createUserSalesforce = (request, response) => {
+    const {name,first_name, last_name } = request.body
+    pool.query('INSERT INTO "salesforce.demo__c" (name,first_name__c, last_name__c) VALUES ($1,$2,$3) RETURNING *',[name,first_name,last_name], (error, results) => {
+        if(error) {
+            throw error
+        }
+        response.status(201).send(`Added User: ${results.rows[0].name}`)
     })
 }
 
@@ -63,7 +81,9 @@ const deleteUser = (request, response) => {
 
 module.exports = {
     getUsers,
+    getUsersSale,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    createUserSalesforce
 }
