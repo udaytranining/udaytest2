@@ -1,0 +1,1 @@
+DATABASE_URL=postgresql://postgres:uday@c2-3-219-135-162.compute-1.amazonaws.com:5432/dp66jpi8comks
