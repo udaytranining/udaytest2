@@ -6,7 +6,7 @@ const app = express();
 const db = require('./postgres');
 const port = process.env.PORT || 5557;
 
-
+node
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({
@@ -15,7 +15,7 @@ app.use(
 )
 
 app.get('/', (request, response) => {
-        response.json({info: 'Our class is live.'})
+        response.json({info: 'Our class is not live.'})
 })
 
 app.get('/users', db.getUsers)
